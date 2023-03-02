@@ -14,6 +14,7 @@ GraphicsItemResizer::GraphicsItemResizer(QGraphicsItem *parent)
     , mMinSize(0, 0)
 {
     setFlag(ItemHasNoContents);
+    setFlag(ItemIsFocusable);
 
     // sides
     mHandleItems.append(new HandleItem(HandleItem::Left, handleSize, this));
@@ -29,6 +30,11 @@ GraphicsItemResizer::GraphicsItemResizer(QGraphicsItem *parent)
 
 GraphicsItemResizer::~GraphicsItemResizer()
 {
+}
+
+void GraphicsItemResizer::focusOutEvent(QFocusEvent *ev) {
+    Q_UNUSED(ev)
+    emit resizerLostFocus();
 }
 
 QRectF GraphicsItemResizer::boundingRect() const

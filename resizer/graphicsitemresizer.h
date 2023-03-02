@@ -34,9 +34,11 @@ public slots:
 
 signals:
     void targetRectChanged(const QRectF &rect);
+    void resizerLostFocus();
 
     // QGraphicsItem interface
 public:
+    virtual void focusOutEvent(QFocusEvent *ev) override;
     virtual QRectF boundingRect() const override;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
